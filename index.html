@@ -87,16 +87,25 @@
     <script>
         var passwordInput = document.getElementById('password');
         var submitButton = document.getElementById('submitBtn');
-        passwordInput.addEventListener('input', function() {
-            var password = this.value.trim();
+
+        function handlePasswordInput() {
+            var password = passwordInput.value.trim();
             if (password === 'sirmonpogi') {
                 submitButton.removeAttribute('disabled');
                 submitButton.style.cursor = 'pointer';
+                submitButton.addEventListener('click', handleButtonClick);
             } else {
                 submitButton.setAttribute('disabled', 'true');
                 submitButton.style.cursor = 'not-allowed';
+                submitButton.removeEventListener('click', handleButtonClick);
             }
-        });
+        }
+
+        function handleButtonClick(event) {
+            console.log("Button clicked");
+        }
+
+        passwordInput.addEventListener('input', handlePasswordInput);
     </script>
 </body>
 </html>
