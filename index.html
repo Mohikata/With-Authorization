@@ -59,6 +59,16 @@
             margin-bottom: 10px;
             border: 3px solid #f1f1f1;
         }
+        .submit-button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            background-color: rgba(0,0,0, 0.4); 
+            color: white;
+            font-weight: bold;
+            border: 3px solid #f1f1f1;
+            cursor: pointer;
+        }
         .download-link {
             display: none;
             font-size: 18px;
@@ -86,11 +96,9 @@
         </div>
         <div class="form-container">
             <input type="password" id="password" class="password-input" placeholder="Enter password">
-            <button id="submitBtn" class="download-link" disabled>Download Here</button>
-            <div class="download-link-container">
-                <div id="downloadLink" class="download-link">
-                    <a id="downloadAnchor" href="./ossform.pdf" download>Download OSS Form</a>
-                </div>
+            <button id="submitBtn" class="submit-button">Submit</button>
+            <div id="downloadLink" class="download-link">
+                <a id="downloadAnchor" href="./ossform.pdf" download>Download OSS Form</a>
             </div>
         </div>
     </div>
@@ -103,17 +111,21 @@
         function handlePasswordInput() {
             var password = passwordInput.value.trim();
             if (password === 'sirmonpogi') {
-                submitButton.removeAttribute('disabled');
-                submitButton.style.cursor = 'pointer';
                 downloadLink.style.display = 'block'; 
             } else {
-                submitButton.setAttribute('disabled', 'true');
-                submitButton.style.cursor = 'not-allowed';
                 downloadLink.style.display = 'none';
             }
         }
 
-        passwordInput.addEventListener('input', handlePasswordInput);
+        submitButton.addEventListener('click', function() {
+            handlePasswordInput();
+        });
+
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handlePasswordInput();
+            }
+        });
     </script>
 </body>
 </html>
