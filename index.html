@@ -93,18 +93,23 @@
             if (password === 'sirmonpogi') {
                 submitButton.removeAttribute('disabled');
                 submitButton.style.cursor = 'pointer';
-                submitButton.addEventListener('click', handleButtonClick);
             } else {
                 submitButton.setAttribute('disabled', 'true');
                 submitButton.style.cursor = 'not-allowed';
-                submitButton.removeEventListener('click', handleButtonClick);
             }
         }
 
         function handleButtonClick(event) {
+            event.preventDefault(); 
             console.log("Button clicked");
+            <div class="download-link-container">
+            <div class="download-link">
+                <a href="./ossform.pdf" target="_blank">Download Here and Open PUP Website</a>
+             </div>
+            </div>
         }
 
+        submitButton.addEventListener('click', handleButtonClick);
         passwordInput.addEventListener('input', handlePasswordInput);
     </script>
 </body>
